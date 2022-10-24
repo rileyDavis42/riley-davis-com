@@ -1,13 +1,59 @@
-.index-content {
+body {
+  &:has(.entire-fucking-website-container.relax) {
+    background: center center fixed no-repeat;
+    background-size: cover;
+    color: #fff;
+  }
+
+  &:has(.relax-container.ocean) {
+    background-image: url("./img/ocean-beach.jpg") !important;
+  }
+
+  &:has(.relax-container.rain) {
+    background-image: url("./img/rainy-street.jpg") !important;
+  }
+}
+
+.entire-fucking-website-container {
+  padding: 10px;
+
+  a, a:visited {
+    cursor: pointer;
+    color: #3498db;
+  }
+
+  .navbar {
+    display: flex;
+    justify-content: space-evenly;
+  }
+  
+  .home-container, .relax-container {
     width: 100%;
     text-align: center;
     margin-top: 10%;
   }
-  
+    
   .boris {
     width: 300px;
     height: 300px;
     border-radius: 1000px;
     object-fit: cover;
   }
-  
+
+  .timer-display span {
+    background-color: #000;
+    border-radius: 10px;
+
+    padding: 5px;
+    width: 100px;
+    height: 100px;
+  }
+
+  .theme-select {
+    margin-top: 5%;
+
+    button {
+      margin: 0 10px;
+    }
+  }
+}
