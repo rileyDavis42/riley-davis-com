@@ -2,6 +2,8 @@ import boris from "./img/boris.jpg";
 import "./Index.scss";
 import { useState } from 'react';
 import RelaxComponent from './Relax/RelaxComponent';
+import HeaderLink from "./HeaderLink";
+import "../fonts/Poppins-Black.ttf";
 
 enum TabView {
     Home,
@@ -13,8 +15,9 @@ const IndexComponent = () => {
 
     return <div className={`entire-fucking-website-container ${tabView === TabView.Relax && "relax"}`}>
       <div className="navbar">
-        <a onClick={() => setTabView(TabView.Home)}>Home</a>
-        <a onClick={() => setTabView(TabView.Relax)}>Relax</a>
+        <HeaderLink onClick={() => setTabView(TabView.Home)}>Temp Link</HeaderLink>
+        <HeaderLink onClick={() => setTabView(TabView.Home)}>Home</HeaderLink>
+        <HeaderLink onClick={() => setTabView(TabView.Relax)}>Relax Tool</HeaderLink>
       </div>
       {tabView === TabView.Home &&
         <div className="home-container">
