@@ -77,7 +77,7 @@ button {
 
     transition: width $transitionSpeed, height $transitionSpeed, border-radius $transitionSpeed;
 
-    &:hover {
+    &:hover, &.active {
       width: 150px;
       height: 150px;
       border-radius: 1000px;

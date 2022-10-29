@@ -1,11 +1,32 @@
+import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
+
 type HeaderLinkProps = {
     link?: string,
+    path?: string,
     onClick?: () => void,
     children?: any
 }
 
-const HeaderLink = ({link, onClick, children}: HeaderLinkProps) => {
-    return <div className="header-link-container" onClick={onClick}>
+const HeaderLink = ({link, path, onClick = () => {}, children}: HeaderLinkProps) => {
+    const location = useLocation();
+
+    useEffect(() => {
+        if( path && location.pathname === path ) {
+            handleOnClick();
+        }
+    }, []);
+
+    const handleOnClick = () => {
+        if( path ) {
+            location.pathname = path;
+        }
+        onClick();
+    }
+
+    return <div
+                className={`header-link-container ${path && path === location.pathname && "active"}`}
+                onClick={handleOnClick}>
         {link ?
         <a href={link}>
             {children}

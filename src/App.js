@@ -3,7 +3,7 @@ import IndexComponent from './Index/Index';
 
 function App() {
   return (
-    <IndexComponent />
+    <IndexComponent/>
 );
 }
 
