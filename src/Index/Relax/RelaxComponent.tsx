@@ -13,10 +13,15 @@ const RelaxComponent = () => {
     const [opacity, setOpacity] = useState<number>(1);
     const [inputTimer, setInputTimer] = useState<number>(0);
     const [hideTimer, setHideTimer] = useState<boolean>(false);
-    const [audioVolume, setAudioVolume] = useState<number>(50);
+    const [audioVolume, setAudioVolume] = useState<number>(25);
+    const [inputTriggered, setInputTriggered] = useState<boolean>(false);
     const gong = new Audio(gongSound);
+    let tick: ReturnType<typeof setInterval>;
+    let inputTick: ReturnType<typeof setInterval>;
+    const listeners = ["mousedown", "keydown", "mousemove"];
 
     const handleInput = () => {
+        setInputTriggered(true);
         setSeconds(120);
         setInputTimer(0);
     }
@@ -26,11 +31,10 @@ const RelaxComponent = () => {
         return vol < 1 ? vol > 0 ? vol : 0 : 1;
     }
 
-    useEffect(() => {
-        const listeners = ["mousedown", "keydown", "mousemove"];
+    const countdownTimer = () => {
         listeners.map((l) => document.addEventListener(l, handleInput));
 
-        const tick = setInterval(() => {
+        tick = setInterval(() => {
             setSeconds(s => {
                 if( s <= 1 ) {
                     clearInterval(tick);
@@ -39,25 +43,36 @@ const RelaxComponent = () => {
                 return s - 1;
             });
         }, 1000);
+    }
 
-        const inputTimer = setInterval(() => {
-            setInputTimer(t => t += 0.1);
-        }, 100);
+    useEffect(() => {
+        countdownTimer();
 
         return () => {
             clearInterval(tick);
-            clearInterval(inputTimer);
             listeners.map((l) => document.removeEventListener(l, handleInput));
         };
-    }, []);
+    }, [seconds, inputTimer && inputTimer < 0]);
 
     useEffect(() => {   
+        if( inputTimer > 1 ) {
+            setInputTriggered(false);
+        }
+
         if( inputTimer > 5 ) {  
             setOpacity(0);
         } else {
             setOpacity(1);
         }
     }, [inputTimer, setInputTimer]);
+
+    useEffect(() => {
+        inputTick = setInterval(() => {
+            setInputTimer(t => t += 0.1);
+        }, 100);
+
+        return () => clearInterval(inputTick);
+    }, []);
 
     const celebrate = () => {
         gong.volume = getVolume();
@@ -76,7 +91,7 @@ const RelaxComponent = () => {
     return <div className={`relax-container ${selectedSound === wavesSound ? "ocean" : "rain"}`} ref={containerRef}>
         <p style={{opacity: opacity}}>This is the same thing as <a href="http://www.donothingfor2minutes.com/">donothingfor2minutes.com</a> but with working audio</p>
         <div className="timer-display" style={hideTimer ? {opacity: opacity} : {}}>
-            <span>
+            <span className={`${inputTriggered && "red"}`}>
                 {Math.floor( seconds / 60 ) + " : "}
                 {seconds % 60 < 10 ? "0" : ""}
                 {seconds % 60}

@@ -45,6 +45,10 @@ button {
 
 .entire-fucking-website-container {
 
+  .red {
+    color: #EA2027;
+  }
+
   a, a:visited {
     text-decoration: none;
     color: #3498db;
@@ -139,6 +143,27 @@ button {
     object-fit: cover;
   }
 
+  .boris-bath-day-count-wrapper {
+    margin-top: 75px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+
+    .boris-bath-day-count {
+      color: #665E60;
+      background-color: #F3F2F2;
+
+      border-radius: 99999px;
+      font-size: 75px;
+
+      width: 100px;
+      height: 100px;
+
+      padding: 10px;
+      margin: 20px auto;
+    }
+  }
 
   .timer-display {
     display: flex;
