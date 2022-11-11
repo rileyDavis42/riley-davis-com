@@ -124,7 +124,6 @@ const RelaxComponent = () => {
                 </div>
             </div>
         </div>
-        
         <ReactAudioPlayer
             src={selectedSound}
             volume={getVolume()}
