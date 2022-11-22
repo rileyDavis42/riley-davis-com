@@ -1,5 +1,5 @@
 $lynx: #F5F6FA;
-$transitionSpeed: 0.5s;
+$transitionSpeed: 0.2s;
 
 body {
   font-family: 'Poppins-Light', sans-serif;
@@ -135,16 +135,32 @@ button {
       color: #353B48;
     }
   }
-    
-  .boris {
-    width: 300px;
-    height: 300px;
-    border-radius: 1000px;
-    object-fit: cover;
+   
+  .boris-container {
+    width: 320px;
+    height: 320px;
+    display: flex;
+
+    .boris {
+      width: 300px;
+      height: 300px;
+      margin: auto;
+      border-radius: 1000px;
+      object-fit: cover;
+      background-size: 320px;
+      background-repeat: no-repeat;
+      background-position: center;
+      vertical-align: middle;
+
+      &:hover {
+        width: 320px;
+        height: 320px;
+      }
+    }
   }
 
   .boris-bath-day-count-wrapper {
-    margin-top: 75px;
+    margin-top: 50px;
     width: 100%;
     display: flex;
     justify-content: center;

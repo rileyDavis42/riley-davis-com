@@ -1,4 +1,4 @@
-import boris from "./img/boris.jpg";
+import * as BorisPics from "./BorisPics";
 import "./Index.scss";
 import React, { useState } from 'react';
 import RelaxComponent from './Relax/RelaxComponent';
@@ -47,10 +47,12 @@ const IndexComponent = () => {
           {tabView === TabView.Home &&
             <div className="home-container">
                 <p>This is my cat Boris he is very cute and I love him very much</p>
-                <img className="boris" src={boris}></img>
+                <div className="boris-container">
+                  <div className="boris"
+                    style={{backgroundImage: `url("${Object.values(BorisPics)[Math.floor(Math.random() * 4)]}"`}}></div>
+                </div>
                 <div className="boris-bath-day-count-wrapper">
                   <span>Days since Boris has had a bath:</span>
-                  {/*@ts-ignore*/}
                   <div className="boris-bath-day-count">{dayjs().diff(lastBathDay, "day")}</div>
                   <span>Hygeine Rating: {getStinkyRating(dayjs().diff(lastBathDay, "day"))}</span>
                 </div>
