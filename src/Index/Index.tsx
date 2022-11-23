@@ -16,6 +16,7 @@ enum TabView {
 
 const IndexComponent = () => {
   const [tabView, setTabView] = useState<TabView>(TabView.Home);
+  const [borisPicIndex, setBorisPicIndex] = useState<number>(Math.floor(Math.random() * 4));
   const lastBathDay = dayjs().month(10).date(6).year(2022);
 
   const getStinkyRating = (days: number) => {
@@ -37,7 +38,8 @@ const IndexComponent = () => {
   return <BrowserRouter>
     <Routes>
       <Route path="*" element={
-        <div className={`entire-fucking-website-container ${tabView === TabView.Relax && "relax"}`}>
+        <div className={`entire-fucking-website-container
+            ${tabView === TabView.Relax && "relax"}`}>
           <div className="navbar">
             <HeaderLink onClick={() => setTabView(TabView.TokiPona)} path="/toki-pona">Learn Toki Pona</HeaderLink>
             <HeaderLink onClick={() => setTabView(TabView.Home)} path="/">Home</HeaderLink>
@@ -49,7 +51,8 @@ const IndexComponent = () => {
                 <p>This is my cat Boris he is very cute and I love him very much</p>
                 <div className="boris-container">
                   <div className="boris"
-                    style={{backgroundImage: `url("${Object.values(BorisPics)[Math.floor(Math.random() * 4)]}"`}}></div>
+                    style={{backgroundImage: `url("${Object.values(BorisPics)[borisPicIndex]}"`}}
+                    onClick={() => setBorisPicIndex(borisPicIndex === 4 ? 0 : borisPicIndex + 1)}></div>
                 </div>
                 <div className="boris-bath-day-count-wrapper">
                   <span>Days since Boris has had a bath:</span>

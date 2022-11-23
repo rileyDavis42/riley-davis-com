@@ -4,11 +4,15 @@ $transitionSpeed: 0.2s;
 body {
   font-family: 'Poppins-Light', sans-serif;
   color: #353B48;
+  background: center center fixed no-repeat;
+  background-size: cover;
 
   &:has(.entire-fucking-website-container.relax) {
-    background: center center fixed no-repeat;
-    background-size: cover;
     color: #fff;
+  }
+
+  &:has(.toki-pona-container) {
+    background-color: #FFFA65;
   }
 
   &:has(.relax-container.ocean) {
@@ -88,7 +92,7 @@ button {
     }
   }
   
-  .home-container, .relax-container {
+  .home-container, .relax-container, .toki-pona-container {
     padding: 10px;
     margin-top: 5%;
 
@@ -145,6 +149,7 @@ button {
       width: 300px;
       height: 300px;
       margin: auto;
+      cursor: pointer;
       border-radius: 1000px;
       object-fit: cover;
       background-size: 320px;
