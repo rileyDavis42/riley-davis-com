@@ -1,11 +1,11 @@
 import * as BorisPics from "./BorisPics";
+import * as FooPics from "./FooPics";
 import "./Index.scss";
 import React, { useState } from 'react';
 import RelaxComponent from './Relax/RelaxComponent';
 import HeaderLink from "./HeaderLink";
 import "../fonts/Poppins-Black.ttf";
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import dayjs from "dayjs";
 import TokiPonaComponent from "./TokiPona/TokiPonaComponent";
 
 enum TabView {
@@ -17,23 +17,7 @@ enum TabView {
 const IndexComponent = () => {
   const [tabView, setTabView] = useState<TabView>(TabView.Home);
   const [borisPicIndex, setBorisPicIndex] = useState<number>(Math.floor(Math.random() * 4));
-  const lastBathDay = dayjs().month(10).date(6).year(2022);
-
-  const getStinkyRating = (days: number) => {
-    if( days < 7 ) {
-      return "fresh and sparkly";
-    } else if( days < 15 ) {
-      return "clean boi";
-    } else if( days < 30 ) {
-      return "lil dusty";
-    } else if( days < 45) {
-      return "dusty baby";
-    } else if( days < 60) {
-      return "stinky smelly";
-    } else {
-      return "he must be bathed soon alhmadullilah";
-    }
-  }
+  const [fooPicIndex, setFooPicIndex] = useState<number>(Math.floor(Math.random() * 7));
 
   return <BrowserRouter>
     <Routes>
@@ -54,10 +38,11 @@ const IndexComponent = () => {
                     style={{backgroundImage: `url("${Object.values(BorisPics)[borisPicIndex]}"`}}
                     onClick={() => setBorisPicIndex(borisPicIndex === 4 ? 0 : borisPicIndex + 1)}></div>
                 </div>
-                <div className="boris-bath-day-count-wrapper">
-                  <span>Days since Boris has had a bath:</span>
-                  <div className="boris-bath-day-count">{dayjs().diff(lastBathDay, "day")}</div>
-                  <span>Hygeine Rating: {getStinkyRating(dayjs().diff(lastBathDay, "day"))}</span>
+                <p>This is my cat Foo she is very cute and I love her very much</p>
+                <div className="foo-container">
+                  <div className="foo"
+                    style={{backgroundImage: `url("${Object.values(FooPics)[fooPicIndex]}"`}}
+                    onClick={() => setFooPicIndex(fooPicIndex === 7 ? 0 : fooPicIndex + 1)}></div>
                 </div>
             </div>}
           {tabView === TabView.Relax && <RelaxComponent/>}
